@@ -12,6 +12,11 @@
 #include <stdlib.h>//libc header for general utilities like memeory dynamic allocation malloc, calloc
 #include <string.h>//libc header for string manipulation
 
+//Macro definition for Google's IP address
+#define IP "209.85.202.139"
+//Macro definition for port to connect to google's server
+#define PORT 80
+
 int main(char** argv, int argc){//start of main method
 	
 	//variable to store the server address to connect to
@@ -42,10 +47,10 @@ int main(char** argv, int argc){//start of main method
 	//sets the address type to internet domain
 	serverAddr.sin_family = AF_INET;
 	//sets the port as 80 in network byte order
-	serverAddr.sin_port= htons(80);
+	serverAddr.sin_port= htons(PORT);
 	//converts the IPv4 string address to network byte order format
 	//we are connecting to google (use can obtain the IPv4 using ping google.com)
-	inet_pton(AF_INET,"209.85.202.139",&serverAddr.sin_addr);
+	inet_pton(AF_INET,IP,&serverAddr.sin_addr);
 	
 	//check if connection failed
 	//you need to typecast the sockaddr_in to type of sockaddr
